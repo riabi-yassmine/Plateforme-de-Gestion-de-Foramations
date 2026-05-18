@@ -1,0 +1,102 @@
+/* Header */
+.formations-header {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2e5a8e 100%);
+}
+.page-title {
+  color: white;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.formations-header .text-muted {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* Filter bar */
+.filter-bar {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e0dbd0;
+  box-shadow: 0 2px 8px rgba(30,58,95,0.06);
+}
+.filter-bar .form-control,
+.filter-bar .form-select,
+.filter-bar .input-group-text {
+  border-color: #d8d3c8;
+  background-color: white;
+}
+.filter-bar .form-control:focus,
+.filter-bar .form-select:focus {
+  border-color: #1e3a5f;
+  box-shadow: 0 0 0 0.2rem rgba(30,58,95,0.15);
+}
+
+/* Formation cards */
+.formation-card {
+  background: white;
+  border: 1px solid #e0dbd0;
+  border-radius: 12px;
+  padding: 1.4rem;
+  display: flex;
+  flex-column: column;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.formation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(30,58,95,0.12);
+}
+
+.formation-title {
+  font-weight: 700;
+  color: #1e3a5f;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.formation-desc {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Niveau badges */
+.niveau-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.niveau-debutant     { background: #d4edda; color: #2e6f57; }
+.niveau-intermediaire { background: #d1e4f5; color: #1e3a5f; }
+.niveau-avance       { background: #f5e6c8; color: #7a5500; }
+
+.duree-badge {
+  font-size: 0.8rem;
+  color: #5a6472;
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  background-color: #f0ece4;
+  color: #5a6472;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd8ce;
+}
+
+/* Voir détail button */
+.btn-voir {
+  background-color: #1e3a5f;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 8px;
+}
+.btn-voir:hover {
+  background-color: #16304f;
+  color: white;
+}

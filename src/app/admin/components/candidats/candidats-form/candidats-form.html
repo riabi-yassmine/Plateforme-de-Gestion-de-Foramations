@@ -1,0 +1,26 @@
+<!-- candidat-form.component.html -->
+<form (ngSubmit)="onSubmit()" #f="ngForm" class="card p-4">
+  <h4>{{ editMode ? 'Modifier' : 'Ajouter' }} un candidat</h4>
+
+  <div class="mb-3">
+    <label>Nom *</label>
+    <input type="text" class="form-control" [(ngModel)]="model.nom" name="nom" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Prénom *</label>
+    <input type="text" class="form-control" [(ngModel)]="model.prenom" name="prenom" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Email *</label>
+    <input type="email" class="form-control" [(ngModel)]="model.email" name="email" required>
+  </div>
+
+  <div class="d-flex gap-2">
+    <button type="submit" class="btn btn-success" [disabled]="f.invalid">
+      {{ editMode ? 'Mettre à jour' : 'Ajouter' }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">Annuler</button>
+  </div>
+</form>

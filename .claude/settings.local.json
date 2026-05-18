@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx prisma *)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\Manoucha\\\\Documents\\\\IsetFormationApplication-main\\\\backend\\\\prisma\\\\prisma\\\\dev.db\" -Force)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\Manoucha\\\\Documents\\\\IsetFormationApplication-main\\\\backend\\\\prisma\\\\prisma\\\\dev.db-shm\" -Force -ErrorAction SilentlyContinue)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\Manoucha\\\\Documents\\\\IsetFormationApplication-main\\\\backend\\\\prisma\\\\prisma\\\\dev.db-wal\" -Force -ErrorAction SilentlyContinue)",
+      "Bash(Write-Output \"DB files deleted\")",
+      "Bash(cp \"C:/Users/Manoucha/Downloads/dev.db\" \"C:/Users/Manoucha/Documents/IsetFormationApplication-main/backend/prisma/prisma/dev.db\" && echo \"Done\")",
+      "Bash(npx ts-node -e ' *)",
+      "Bash(curl -s http://localhost:3000/api/candidats)",
+      "Bash(curl -s http://localhost:3000/api/inscriptions)",
+      "Bash(npx ng *)",
+      "Bash(npm install *)",
+      "Bash(cd /tmp)",
+      "Bash(cp \"C:/Users/Manoucha/Downloads/ISET_Scrum_Presentation.pptx\" .)",
+      "Bash(unzip -o ISET_Scrum_Presentation.pptx -d pptx_extracted)",
+      "Bash(xargs grep -h '<a:t>')",
+      "Bash(pip show *)",
+      "Bash(pip install *)",
+      "Bash(python -c \"import pptx; print\\('OK'\\)\")",
+      "Bash(python \"C:/Users/Manoucha/Downloads/make_pptx.py\")",
+      "Bash(cp \"C:/Users/Manoucha/Downloads/Presentation_ISET_Formations.pptx\" .)",
+      "Bash(unzip -o Presentation_ISET_Formations.pptx -d pptx1)",
+      "Bash(python merge_pptx.py)",
+      "PowerShell(python -c \"import reportlab; print\\('reportlab ok'\\)\" 2>&1)",
+      "PowerShell(python -c \"import fpdf; print\\('fpdf ok'\\)\" 2>&1)",
+      "PowerShell(cd \"C:\\\\Users\\\\Manoucha\\\\Downloads\"; \\(Get-Content speech_pdf.py\\) -replace \"'Helvetica'\", \"'Arial'\" | Set-Content speech_pdf.py -Encoding utf8; python speech_pdf.py 2>&1)"
+    ]
+  }
+}

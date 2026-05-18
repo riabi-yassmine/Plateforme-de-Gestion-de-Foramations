@@ -1,0 +1,64 @@
+<!-- Hero -->
+<section class="hero-section text-center py-5">
+  <div class="container py-3">
+    <span class="badge-iset mb-3">ISET Radès</span>
+    <h1 class="hero-title">Programme de Formations Professionnelles</h1>
+    <p class="hero-subtitle">
+      Des formations encadrées par des experts, conçues pour préparer les talents de demain.
+    </p>
+    <a routerLink="/public/formations" class="btn btn-hero me-2">
+      <i class="bi bi-search me-1"></i> Voir les formations
+    </a>
+    <a routerLink="/public/mes-inscriptions" class="btn btn-hero-outline">
+      <i class="bi bi-journal-check me-1"></i> Mes inscriptions
+    </a>
+  </div>
+</section>
+
+<!-- Catégories -->
+<section class="container py-5">
+  <div class="text-center mb-5">
+    <h2 class="section-title">Nos domaines de formation</h2>
+    <p class="text-muted">Choisissez parmi nos catégories et développez vos compétences</p>
+  </div>
+
+  <div class="row g-4 justify-content-center">
+    @for (cat of categories; track cat.id) {
+      <div class="col-md-6 col-lg-4">
+        <div class="category-card text-center p-4">
+          @switch (cat.id) {
+            @case (1) { <i class="bi bi-code-slash category-icon text-success"></i> }
+            @case (2) { <i class="bi bi-diagram-3 category-icon text-info"></i> }
+            @case (3) { <i class="bi bi-bar-chart-line category-icon text-warning"></i> }
+            @default   { <i class="bi bi-book category-icon text-secondary"></i> }
+          }
+          <h5 class="fw-bold mt-3 mb-0">{{ cat.nom }}</h5>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Pourquoi nous choisir -->
+<section class="why-section py-5">
+  <div class="container">
+    <h2 class="section-title text-center mb-5">Pourquoi nous choisir ?</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <i class="bi bi-person-workspace why-icon"></i>
+        <h6 class="fw-bold mt-3">Formateurs experts</h6>
+        <p class="text-muted small">Enseignants-chercheurs et ingénieurs en activité</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-award why-icon"></i>
+        <h6 class="fw-bold mt-3">Formations certifiées</h6>
+        <p class="text-muted small">Programmes reconnus alignés sur les besoins du marché</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-laptop why-icon"></i>
+        <h6 class="fw-bold mt-3">Pratique & Théorie</h6>
+        <p class="text-muted small">Un équilibre entre cours magistraux et travaux pratiques</p>
+      </div>
+    </div>
+  </div>
+</section>

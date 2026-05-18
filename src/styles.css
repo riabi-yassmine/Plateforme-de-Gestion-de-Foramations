@@ -1,0 +1,93 @@
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f4f1eb;
+  color: #2c2c2c;
+}
+
+/* ── Bootstrap color overrides ── */
+:root {
+  --bs-primary:        #1e3a5f;
+  --bs-primary-rgb:    30, 58, 95;
+  --bs-success:        #2e6f57;
+  --bs-success-rgb:    46, 111, 87;
+  --bs-info:           #4a6fa5;
+  --bs-info-rgb:       74, 111, 165;
+  --bs-warning:        #b5860d;
+  --bs-warning-rgb:    181, 134, 13;
+  --bs-danger:         #8b2e2e;
+  --bs-danger-rgb:     139, 46, 46;
+  --bs-secondary:      #5a6472;
+  --bs-secondary-rgb:  90, 100, 114;
+  --bs-body-bg:        #f4f1eb;
+  --bs-body-color:     #2c2c2c;
+  --bs-link-color:     #1e3a5f;
+  --bs-border-color:   #d8d3c8;
+}
+
+/* ── Buttons ── */
+.btn-primary   { background-color: #1e3a5f; border-color: #1e3a5f; color: #fff; }
+.btn-primary:hover { background-color: #16304f; border-color: #16304f; }
+.btn-success   { background-color: #2e6f57; border-color: #2e6f57; color: #fff; }
+.btn-success:hover { background-color: #255c47; border-color: #255c47; }
+.btn-info      { background-color: #4a6fa5; border-color: #4a6fa5; color: #fff; }
+.btn-info:hover { background-color: #3d5e8c; border-color: #3d5e8c; }
+.btn-outline-primary { color: #1e3a5f; border-color: #1e3a5f; }
+.btn-outline-primary:hover { background-color: #1e3a5f; color: #fff; }
+.btn-outline-success { color: #2e6f57; border-color: #2e6f57; }
+.btn-outline-success:hover { background-color: #2e6f57; color: #fff; }
+.btn-outline-info { color: #4a6fa5; border-color: #4a6fa5; }
+.btn-outline-info:hover { background-color: #4a6fa5; color: #fff; }
+.btn-outline-danger { color: #8b2e2e; border-color: #8b2e2e; }
+.btn-outline-danger:hover { background-color: #8b2e2e; color: #fff; }
+
+/* ── Cards ── */
+.card { border-color: #d8d3c8; background-color: #fff; }
+.card-header.bg-primary  { background-color: #1e3a5f !important; }
+.card-header.bg-success  { background-color: #2e6f57 !important; }
+.card-header.bg-info     { background-color: #4a6fa5 !important; }
+.card-header.bg-warning  { background-color: #b5860d !important; }
+
+/* ── Badges ── */
+.badge.bg-primary  { background-color: #1e3a5f !important; }
+.badge.bg-success  { background-color: #2e6f57 !important; }
+.badge.bg-info     { background-color: #4a6fa5 !important; }
+.badge.bg-warning  { background-color: #b5860d !important; color: #fff !important; }
+.badge.bg-danger   { background-color: #8b2e2e !important; }
+.badge.bg-secondary { background-color: #5a6472 !important; }
+
+/* ── Dashboard stat cards ── */
+.card.bg-primary { background-color: #1e3a5f !important; }
+.card.bg-success { background-color: #2e6f57 !important; }
+.card.bg-warning { background-color: #b5860d !important; }
+.card.bg-info    { background-color: #4a6fa5 !important; }
+
+/* ── Navbar ── */
+.navbar { background-color: #1e3a5f !important; }
+.navbar-nav .nav-link.active {
+  font-weight: 600;
+  border-bottom: 2px solid #c9a84c;
+}
+
+/* ── Table ── */
+.table-light { background-color: #ede9e0; }
+
+/* ── Pagination ── */
+.page-item.active .page-link { background-color: #1e3a5f; border-color: #1e3a5f; }
+.page-link { color: #1e3a5f; }
+.page-link:hover { color: #16304f; }
+
+/* ── Text helpers ── */
+.text-primary { color: #1e3a5f !important; }
+.text-success { color: #2e6f57 !important; }
+.text-info    { color: #4a6fa5 !important; }
+.text-warning { color: #b5860d !important; }
+
+/* ── Footer ── */
+footer { background-color: #ede9e0; }
+footer p { color: #5a6472 !important; }
+
+/* ── Progress bar ── */
+.progress-bar { background-color: #2e6f57; }
+.progress-bar.bg-warning { background-color: #b5860d !important; }

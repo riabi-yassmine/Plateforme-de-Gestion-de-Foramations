@@ -1,0 +1,209 @@
+<div class="container mt-4">
+  
+  <!-- ÉTAT DE CHARGEMENT (formation === undefined) -->
+  @if (formation === undefined) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Chargement...</span>
+      </div>
+      <h3 class="mt-4 text-primary">Chargement de la formation...</h3>
+      <p class="text-muted">Veuillez patienter quelques instants.</p>
+    </div>
+  }
+  
+  <!-- FORMATION TROUVÉE (formation est un objet) -->
+  @else if (formation) {
+    <div class="formation-header mb-4">
+      <h1 class="mb-3">{{ formation.titre }}</h1>
+      
+      <div class="formation-meta mb-3">
+        <span class="badge bg-primary me-2">{{ formation.niveau }}</span>
+        <span class="badge bg-secondary me-2">{{ formation.chargeHoraire }} heures</span>
+        @for (tag of formation.tags; track tag) {
+          <span class="badge bg-light text-dark me-1">
+            {{ tag }}
+          </span>
+        }
+      </div>
+      
+      <div class="formation-description mb-4">
+        <h4>Description</h4>
+        <p class="lead">{{ formation.description }}</p>
+      </div>
+
+      <!-- Bouton pour le PDF -->
+      <div class="mb-5">
+        <!--<button 
+          (click)="openProgrammePdf()" 
+          class="btn btn-primary"
+          [disabled]="!formation.programmePdf"
+        >
+          <i class="bi bi-file-earmark-pdf"></i> Télécharger le programme (PDF)
+        </button>
+        @if (!formation.programmePdf) {
+          <small class="text-muted ms-2">
+            Programme non disponible
+          </small>
+        }-->
+
+        <button class="btn btn-secondary" (click)="imprimer()">
+                  <i class="bi bi-file-earmark-pdf"></i> 🖨️Imprimer || ⬇️Télécharger le programme (pdf)
+        </button>
+        
+      </div>
+
+      <!-- Sessions -->
+      <h3 class="mb-4">Sessions à venir</h3>
+      
+      @if (sessions.length === 0) {
+        <div class="alert alert-warning">
+          <i class="bi bi-info-circle"></i> Aucune session programmée pour le moment.
+        </div>
+      }
+
+      @for (session of sessions; track session.id) {
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Session #{{ session.id }}</h5>
+            <span class="badge fs-6"
+              [class.bg-danger]="getStatus(session) === 'complet'"
+              [class.bg-success]="getStatus(session) === 'en-cours'"
+              [class.bg-primary]="getStatus(session) === 'a-venir'"
+              [class.bg-secondary]="getStatus(session) === 'termine'">
+              {{ getStatus(session) === 'complet' ? 'Complet' :
+                 getStatus(session) === 'en-cours' ? 'En cours' :
+                 getStatus(session) === 'a-venir' ? 'À venir' : 'Terminé' }}
+            </span>
+          </div>
+          <div class="card-body">
+            <!-- Dates -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p class="mb-1"><strong>Date de début :</strong></p>
+                <p class="text-primary">{{ session.dateDebut }}</p>
+              </div>
+              <div class="col-md-6">
+                <p class="mb-1"><strong>Date de fin :</strong></p>
+                <p class="text-primary">{{ session.dateFin }}</p>
+              </div>
+              <div class="col-md-6" *ngIf="session.heureDebut">
+                <p class="mb-1"><strong>Horaire :</strong></p>
+                <p class="text-primary"><i class="bi bi-clock me-1"></i>{{ session.heureDebut }} – {{ session.heureFin }}</p>
+              </div>
+              <div class="col-md-6" *ngIf="session.salle">
+                <p class="mb-1"><strong>Salle :</strong></p>
+                <p class="text-primary"><i class="bi bi-geo-alt me-1"></i>{{ session.salle }}</p>
+              </div>
+            </div>
+
+            <!-- Formateurs -->
+            
+
+@defer (when formateursLoaded$| async) { 
+  <p class="mb-2"><strong>Formateur(s) : (cliquer sur le formateur pour voir son cv)</strong></p>
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    @for (id of session.formateursIds; track id) {
+      @if (formateursMap.get(id); as formateur) {
+        <span class="badge bg-light text-dark py-2 px-3 border">
+          <i class="bi bi-person-fill text-primary me-1"></i>
+          <a 
+            href="{{ formateur.cv }}" 
+            target="_blank"
+            title="Ouvrir le CV de {{ formateur.prenom }} {{ formateur.nom }}"
+            class="text-decoration-none text-success"
+            (click)="openCv($event, formateur.cv)"
+          >
+            {{ formateur.prenom }} {{ formateur.nom }}
+           
+          </a>
+        </span>
+      } @else {
+        <span class="badge bg-secondary py-2 px-3">
+          <i class="bi bi-person-slash me-1"></i>
+          Formateur #{{ id }}
+        </span>
+      }
+    }
+  </div>
+} @placeholder {
+  <p class="mb-2"><strong>Formateur(s) :</strong></p>
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    @for (id of session.formateursIds; track id) {
+      <span class="badge bg-light text-dark py-2 px-3 border">
+        <i class="bi bi-person-fill text-primary me-1"></i>
+        Chargement...
+      </span>
+    }
+  </div>
+}
+
+            <!-- Description -->
+            <p class="mb-2"><strong>Description de la session :</strong></p>
+            <p class="mb-4">{{ session.description }}</p>
+
+            <!-- Candidats inscrits -->
+            <div class="mb-3">
+              <p><strong>Candidats inscrits :</strong></p>
+              <div class="progress" style="height: 25px;">
+                <!-- barre de progression -->
+                <div 
+                  class="progress-bar" 
+                  [class.bg-success]="session.inscriptions.length < 15"
+                  [class.bg-warning]="session.inscriptions.length >= 15"
+                  role="progressbar" 
+                  [style.width]="(session.inscriptions.length / 15 * 100) + '%'"
+                  [attr.aria-valuenow]="session.inscriptions.length"
+                  aria-valuemin="0" 
+                  aria-valuemax="15"
+                >
+                  {{ session.inscriptions.length }} / 15
+                </div>
+              </div>
+              
+            </div>
+
+            <!-- Bouton d'inscription -->
+            <button 
+              class="btn btn-lg w-100"
+              [class.btn-success]="session.inscriptions.length < 15"
+              [class.btn-secondary]="session.inscriptions.length >= 15"
+              [disabled]="session.inscriptions.length >= 15"
+              (click)="openInscriptionModal(session.id)"
+            >
+              @if (session.inscriptions.length >= 15) {
+                <i class="bi bi-x-circle"></i> Session complète
+              } @else {
+                <i class="bi bi-check-circle"></i> S'inscrire à cette session
+              }
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- Bouton de retour -->
+      <div class="mt-5 text-center">
+        <a [routerLink]="['/public/formations']" class="btn btn-outline-primary">
+          <i class="bi bi-arrow-left"></i> Retour à la liste des formations
+        </a>
+      </div>
+    </div>
+  }
+  
+  <!-- FORMATION NON TROUVÉE (formation === null) -->
+  @else if (formation === null) {
+    <div class="alert alert-danger text-center py-5">
+      <i class="bi bi-exclamation-triangle display-4 d-block mb-3 text-danger"></i>
+      <h2>Formation non trouvée</h2>
+      <p class="lead">La formation que vous recherchez n'existe pas ou a été supprimée.</p>
+      <p class="text-muted">Vérifiez que l'URL est correcte ou que la formation existe bien dans le système.</p>
+      <div class="mt-4">
+        <a [routerLink]="['/public/formations']" class="btn btn-primary btn-lg">
+          <i class="bi bi-arrow-left"></i> Retour aux formations
+        </a>
+        <a [routerLink]="['/public/home']" class="btn btn-outline-secondary btn-lg ms-2">
+          <i class="bi bi-house"></i> Accueil
+        </a>
+      </div>
+    </div>
+  }
+</div>

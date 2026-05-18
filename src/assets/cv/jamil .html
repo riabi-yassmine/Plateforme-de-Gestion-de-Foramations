@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CV — Jamil Jomaa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #f8f9fa;
+        margin: 0;
+        padding: 0;
+      }
+      .cv-header {
+        background: #2c3e50;
+        color: white;
+        padding: 2rem 2rem 1.5rem 6rem;
+        position: relative;
+        min-height: 180px;
+      }
+      .cv-header h1 {
+        font-weight: 700;
+        margin: 0;
+        font-size: 2.2rem;
+        line-height: 1.3;
+      }
+      .cv-header .subtitle {
+        opacity: 0.85;
+        font-size: 1.2rem;
+        margin-top: 0.3rem;
+      }
+
+      /* ✅ Photo en <img> — visible dans le PDF */
+      .photo-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 10;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+      }
+      .photo-badge img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 4px solid white;
+      }
+
+      .cv-content {
+        margin-left: 160px;
+      }
+
+      .section {
+        margin-bottom: 1.6rem;
+      }
+      .section-title {
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 0.3rem;
+        color: #2c3e50;
+        font-size: 1.3rem;
+      }
+      .skill-bar {
+        height: 8px;
+        border-radius: 4px;
+        background: #e0e0e0;
+        margin: 0.5rem 0;
+      }
+      .skill-level {
+        background: #3498db;
+        height: 100%;
+        border-radius: 4px;
+      }
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.45rem;
+      }
+      .contact-item i {
+        width: 24px;
+        color: #3498db;
+      }
+
+      /* ✅ Force l’affichage des images lors de l’impression */
+      @media print {
+        body {
+          background: white;
+          -webkit-print-color-adjust: exact;
+        }
+        .cv-header {
+          min-height: 160px;
+          padding-left: 6rem;
+        }
+        img {
+          -webkit-print-color-adjust: exact;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container py-3">
+      <div class="cv-header">
+        <!-- ✅ Photo avec <img> — visible dans le PDF -->
+        <div class="photo-badge">
+          <img src="../photos/jamil.jpg" alt="Jamil Jomaa" class="img-fluid" />
+        </div>
+
+        <div class="cv-content">
+          <h1>Jamil Jomaa</h1>
+          <p class="subtitle">Développeur Full-Stack Senior | Expert Angular & Node.js</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="section">
+            <h3 class="section-title"><i class="bi bi-person"></i> Profil Professionnel</h3>
+            <p>
+              Développeur Full-Stack expérimenté avec plus de 8 ans d’expérience dans la conception
+              et le déploiement d’applications web modernes. Spécialisé en Angular, Node.js et
+              architectures microservices. Passionné par la formation et la transmission des bonnes
+              pratiques.
+            </p>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title"><i class="bi bi-star"></i> Compétences Clés</h3>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-between">
+                <strong>Angular (v10-17)</strong>
+                <span>Expert</span>
+              </div>
+              <div class="skill-bar"><div class="skill-level" style="width: 95%"></div></div>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-between">
+                <strong>Node.js / Express</strong>
+                <span>Avancé</span>
+              </div>
+              <div class="skill-bar"><div class="skill-level" style="width: 90%"></div></div>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-between">
+                <strong>TypeScript / JavaScript</strong>
+                <span>Expert</span>
+              </div>
+              <div class="skill-bar"><div class="skill-level" style="width: 95%"></div></div>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-between">
+                <strong>REST / GraphQL</strong>
+                <span>Intermédiaire</span>
+              </div>
+              <div class="skill-bar"><div class="skill-level" style="width: 80%"></div></div>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-between">
+                <strong>Docker / CI-CD</strong>
+                <span>Intermédiaire</span>
+              </div>
+              <div class="skill-bar"><div class="skill-level" style="width: 75%"></div></div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title">
+              <i class="bi bi-briefcase"></i> Expérience Professionnelle
+            </h3>
+            <div class="mb-3">
+              <h5>Formateur & Consultant — ISET Rades</h5>
+              <p class="text-muted"><i>2022 – Présent</i></p>
+              <ul>
+                <li>
+                  Conception et animation de formations Angular avancé, Node.js, et architectures
+                  modernes.
+                </li>
+                <li>Accompagnement de projets étudiants (PFA, PFE).</li>
+                <li>Développement d’applications pédagogiques en Angular.</li>
+              </ul>
+            </div>
+            <div class="mb-3">
+              <h5>Développeur Full-Stack — Tech Solutions SARL</h5>
+              <p class="text-muted"><i>2016 – 2022</i></p>
+              <ul>
+                <li>Développement d’une plateforme SaaS en Angular + Node.js.</li>
+                <li>Migration d’applications legacy vers des architectures microservices.</li>
+                <li>Tests automatisés (Jasmine, Jest, Cypress).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="section">
+            <h3 class="section-title"><i class="bi bi-card-text"></i> Informations</h3>
+            <div class="contact-item">
+              <i class="bi bi-geo-alt"></i>
+              <span class="ms-2">Tunis, Tunisie</span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-telephone"></i>
+              <span class="ms-2">+216 27 112 445</span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-envelope"></i>
+              <span class="ms-2">jamil.jomaa@iset.rn.tn</span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-github"></i>
+              <span class="ms-2">github.com/jamiljomaa</span>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title"><i class="bi bi-mortarboard"></i> Formation</h3>
+            <p>
+              <strong>Ingénieur en Informatique</strong><br />
+              <em>École Nationale d’Ingénieurs de Tunis (ENIT)</em>
+            </p>
+            <p>
+              <strong>Certification Angular</strong><br />
+              <em>Google Developers Certification — 2021</em>
+            </p>
+          </div>
+
+          <div class="section">
+            <h3 class="section-title"><i class="bi bi-translate"></i> Langues</h3>
+            <p>
+              <strong>Français</strong> — Courant<br />
+              <strong>Anglais</strong> — Technique (lu/écrit)<br />
+              <strong>Arabe</strong> — Langue maternelle
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center text-muted mt-4 pt-3 border-top">
+        <small>© 2026 ISET Rades — CV confidentiel réservé au recrutement pédagogique</small>
+      </div>
+    </div>
+  </body>
+</html>

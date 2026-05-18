@@ -1,0 +1,90 @@
+<!-- Header -->
+<div class="insc-header py-4 mb-4">
+  <div class="container text-center">
+    <h1 class="page-title mb-1">
+      <i class="bi bi-person-plus me-2"></i>Inscription à la session #{{ sessionID }}
+    </h1>
+    <p class="mb-0" style="color: rgba(255,255,255,0.75);">Remplissez le formulaire pour confirmer votre place</p>
+  </div>
+</div>
+
+<div class="container pb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+
+      <!-- Success -->
+      <div *ngIf="success" class="success-card text-center p-5">
+        <div class="success-icon mb-3">
+          <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <h4 class="fw-bold mb-1">Inscription confirmée !</h4>
+        <p class="text-muted mb-4">Votre place a été enregistrée avec succès.</p>
+
+        <div class="recap-box text-start mb-4">
+          <div class="recap-row"><span class="recap-label">Nom</span><span>{{ candidat.nom }}</span></div>
+          <div class="recap-row"><span class="recap-label">Prénom</span><span>{{ candidat.prenom }}</span></div>
+          <div class="recap-row"><span class="recap-label">Email</span><span>{{ candidat.email }}</span></div>
+          <div class="recap-row"><span class="recap-label">Session</span><span>#{{ sessionID }}</span></div>
+        </div>
+
+        <p class="info-note mb-4">
+          <i class="bi bi-info-circle me-1"></i>
+          Consultez vos inscriptions à tout moment depuis <strong>Mes inscriptions</strong>.
+        </p>
+
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" (click)="router.navigate(['/public/mes-inscriptions'])">
+            <i class="bi bi-journal-check me-1"></i> Voir mes inscriptions
+          </button>
+          <button class="btn btn-outline-secondary" (click)="router.navigate(['/public/formations'])">
+            <i class="bi bi-arrow-left me-1"></i> Retour aux formations
+          </button>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div *ngIf="!success" class="form-card p-4">
+
+        <div *ngIf="erreur" class="alert alert-danger mb-3">
+          <i class="bi bi-exclamation-circle me-1"></i>{{ erreur }}
+        </div>
+
+        <form (ngSubmit)="onSumbit()" #f="ngForm">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Nom *</label>
+            <input type="text" class="form-control custom-input" [(ngModel)]="candidat.nom" name="nom" required
+              [class.is-invalid]="nomCtrl.invalid && nomCtrl.touched" #nomCtrl="ngModel">
+            <div class="invalid-feedback">Le nom est requis.</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Prénom *</label>
+            <input type="text" class="form-control custom-input" [(ngModel)]="candidat.prenom" name="prenom" required
+              [class.is-invalid]="prenomCtrl.invalid && prenomCtrl.touched" #prenomCtrl="ngModel">
+            <div class="invalid-feedback">Le prénom est requis.</div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Email *</label>
+            <input type="email" class="form-control custom-input" [(ngModel)]="candidat.email" name="email" required email
+              [class.is-invalid]="emailCtrl.invalid && emailCtrl.touched" #emailCtrl="ngModel">
+            <div class="invalid-feedback">Un email valide est requis.</div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-confirm" [disabled]="f.invalid || isLoading">
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+              <i *ngIf="!isLoading" class="bi bi-check2-circle me-1"></i>
+              {{ isLoading ? 'En cours...' : "Confirmer l'inscription" }}
+            </button>
+            <button type="button" class="btn btn-outline-secondary"
+              (click)="router.navigate(['/public/formations'])">
+              <i class="bi bi-arrow-left me-1"></i> Annuler
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

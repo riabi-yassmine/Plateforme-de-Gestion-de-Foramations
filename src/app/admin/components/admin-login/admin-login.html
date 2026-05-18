@@ -1,0 +1,67 @@
+<div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card shadow">
+            <div class="card-header bg-primary text-white text-center">
+              <h3><i class="bi bi-lock"></i> Connexion Admin</h3>
+            </div>
+             <div class="card-body">
+              @if (erreur) {
+                <!-- <div class ="alert alert-danger">{{ erreur }}</div> -->
+                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      {{ erreur }}
+                      <button type="button" class="btn-close" (click)="erreur = null" aria-label="Close"></button>
+                  </div>
+                
+              }
+              <!-- <form (ngSubmit)="onLogin()" #f="ngForm"></form> -->
+ 
+              <form (ngSubmit)="onLogin()" #f="ngForm" novalidate>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email *</label>
+                  <input 
+                    type="email" 
+                    id="email"
+                    class="form-control"
+                    [(ngModel)]="credentials.email"
+                    (input)="onInputChange()"
+                    name="email"
+                    required
+                    [class.is-invalid]="erreur"
+                  >
+                </div>
+                
+                <div class="mb-3">
+                  <label for="password" class="form-label">Mot de passe *</label>
+                  <input 
+                    type="password" 
+                    id="password"
+                    class="form-control"
+                    [(ngModel)]="credentials.password"
+                    (input)="onInputChange()"
+                    name="password"
+                    required
+                     [class.is-invalid]="erreur"
+                  >
+                </div>
+                
+                <button 
+                  type="submit" 
+                  class="btn btn-primary w-100"
+                  [disabled]="f.invalid || isLoading"
+                >
+                  <!-- <i class="bi bi-box-arrow-in-right"></i> Se connecter -->
+                    @if (isLoading) {
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              } @else {
+                <i class="bi bi-box-arrow-in-right"></i>
+              }
+              {{ isLoading ? 'Connexion...' : 'Se connecter' }}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+   

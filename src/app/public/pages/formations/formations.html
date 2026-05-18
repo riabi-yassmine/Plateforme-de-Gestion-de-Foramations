@@ -1,0 +1,94 @@
+<!-- Page header -->
+<div class="formations-header py-4">
+  <div class="container">
+    <h1 class="page-title mb-1"><i class="bi bi-book me-2"></i>Formations disponibles</h1>
+    <p class="text-muted mb-0">Trouvez la formation qui correspond à votre parcours</p>
+  </div>
+</div>
+
+<div class="container py-4">
+
+  <!-- Filtres -->
+  <div class="filter-bar p-3 mb-4">
+    <div class="row g-2 align-items-center">
+      <div class="col-md-5">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">
+            <i class="bi bi-search text-muted"></i>
+          </span>
+          <input #searchInput type="text"
+            class="form-control border-start-0 ps-0"
+            placeholder="Mot-clé, technologie, titre..."
+            (input)="onSearchChange(searchInput.value)">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <select #niveauSelect class="form-select" (change)="onNiveauChange(niveauSelect.value)">
+          <option value="">Tous les niveaux</option>
+          <option *ngFor="let n of niveaux" [value]="n">{{ n | titlecase }}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select #categorieSelect class="form-select" (change)="onCategorieChange(categorieSelect.value)">
+          <option value="">Toutes les catégories</option>
+          <option *ngFor="let c of categories" [value]="c.id">{{ c.nom }}</option>
+        </select>
+      </div>
+      <div class="col-md-1">
+        <button class="btn btn-outline-secondary w-100" (click)="resetFilters()" title="Réinitialiser">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Résultats -->
+  <p class="text-muted small mb-3">
+    {{ (filteredFormations$ | async)?.length }} formation(s) trouvée(s)
+  </p>
+
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4" *ngFor="let f of filteredFormations$ | async; trackBy: trackById">
+      <div class="formation-card h-100">
+
+        <!-- Niveau badge -->
+        <div class="card-top d-flex justify-content-between align-items-start mb-3">
+          <span class="niveau-badge" [class.niveau-debutant]="f.niveau === 'débutant'"
+                [class.niveau-intermediaire]="f.niveau === 'intermédiaire'"
+                [class.niveau-avance]="f.niveau === 'avancé'">
+            {{ f.niveau | titlecase }}
+          </span>
+          <span class="duree-badge">
+            <i class="bi bi-clock me-1"></i>{{ f.chargeHoraire }}h
+          </span>
+        </div>
+
+        <h5 class="formation-title">{{ f.titre }}</h5>
+        <p class="formation-desc text-muted">{{ f.description | slice:0:110 }}...</p>
+
+        <!-- Tags -->
+        <div class="mb-3">
+          <span class="tag me-1" *ngFor="let t of f.tags.split(',')">{{ t.trim() }}</span>
+        </div>
+
+        <div class="mt-auto">
+          <a class="btn btn-voir w-100" [routerLink]="['/public/formations', f.id]">
+            Voir le détail <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="(filteredFormations$ | async)?.length === 0" class="col-12">
+      <div class="text-center py-5 text-muted">
+        <i class="bi bi-search" style="font-size: 3rem; opacity: 0.3;"></i>
+        <p class="mt-3">Aucune formation trouvée pour ces critères.</p>
+        <button class="btn btn-outline-secondary btn-sm" (click)="resetFilters()">
+          Réinitialiser les filtres
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

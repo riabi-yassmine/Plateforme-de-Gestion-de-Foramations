@@ -1,0 +1,61 @@
+<div class="container py-5">
+  <h2 class="text-center mb-4">Découvrir mes inscriptions</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form [formGroup]="form" (ngSubmit)="rechercher()">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" id="nom" class="form-control" formControlName="nom" />
+        </div>
+        <div class="mb-3">
+          <label for="prenom" class="form-label">Prénom</label>
+          <input type="text" id="prenom" class="form-control" formControlName="prenom" />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-control" formControlName="email" />
+        </div>
+        <button type="submit" class="btn btn-primary w-100" [disabled]="loading">
+          {{ loading ? 'Recherche en cours...' : 'Découvrir mes inscriptions' }}
+        </button>
+      </form>
+
+      @if (error) {
+        <div class="alert alert-warning mt-3">{{ error }}</div>
+      }
+    </div>
+  </div>
+
+  @if (inscriptions.length > 0) {
+    <h3 class="mt-5 text-center">Vos inscriptions</h3>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Formation</th>
+            <th>Session</th>
+            <th>Du</th>
+            <th>Au</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (insc of inscriptions; track insc.candidatId + '-' + insc.sessionId) {
+            <tr>
+              <td>{{ insc.session.formation.titre }}</td>
+              <td>Session #{{ insc.session.id }}</td>
+              <td>{{ insc.session.dateDebut }}</td>
+              <td>{{ insc.session.dateFin }}</td>
+              <td>
+                <button class="btn btn-sm btn-danger" (click)="annuler(insc)">
+                  Annuler
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

@@ -1,0 +1,84 @@
+<div class="container mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="bi bi-grid-3x3-gap"></i> Tableau de bord</h2>
+       <!-- <button class="btn btn-outline-danger btn-sm" (click)="reset()">
+          <i class="bi bi-arrow-clockwise"></i> Réinitialiser
+        </button>-->
+         <button class="btn btn-outline-dark" (click)="logout()">
+  <i class="bi bi-box-arrow-right"></i> Déconnexion
+</button>
+       
+      </div>
+       <div class="row text-center">
+        <div class="col-md-3 mb-4">
+          <div class="card bg-primary text-white">
+            <div class="card-body">
+              <h3>{{ candidatsCount$ |async}}</h3>
+              <p class="mb-0">Candidats</p>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card bg-success text-white">
+            <div class="card-body">
+              <h3>{{ formateursCount$|async}}</h3>
+              <p class="mb-0">Formateurs</p>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card bg-warning text-dark">
+            <div class="card-body">
+              <h3>{{ formationsCount$|async}}</h3>
+              <p class="mb-0">Formations</p>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4">
+          <div class="card bg-info text-white">
+            <div class="card-body">
+              <h3>{{ sessionsCount$|async}}</h3>
+              <p class="mb-0">Sessions</p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+<!-- pour la partie statistiques, j'ai ajouté deux graphiques :
+- Un graphique à barres pour le nombre de candidats par formation. -->
+
+    <div class="container mt-4">
+  <h2><i class="bi bi-bar-chart"></i> Statistiques</h2>
+
+  <div class="row">
+    <!-- Graphique 1 -->
+    <div class="col-12 col-md-6 mb-4">
+      <div class="card h-100">
+         <div class="card-body d-flex flex-column">
+          <canvas id="candidatsChart" style="min-height: 300px; height: 100%;"></canvas>
+        </div> 
+        
+      </div>
+    </div>
+
+    <!-- Graphique 2 -->
+    <div class="col-12 col-md-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body d-flex flex-column">
+          <canvas id="remplissageChart" style="min-height: 400px; height: 100%;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="alert alert-info">
+        <i class="bi bi-info-circle"></i> 
+        Toutes les données sont sauvegardées dans votre base de données (SQLite).
+        Elles persistent après fermeture/rechargement.
+      </div>

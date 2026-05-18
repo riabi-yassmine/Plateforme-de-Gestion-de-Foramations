@@ -1,0 +1,101 @@
+<div class="container mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="bi bi-book"></i> Formations ({{ (formations$|async)?.length }})</h2>
+        <button class="btn btn-primary" (click)="openModal('add')">
+          <i class="bi bi-plus-lg"></i> Ajouter
+        </button>
+      </div>
+      
+ 
+       <div class="row">
+        <div class="col-md-6 mb-4" *ngFor="let f of formations$|async">
+          <div class="card h-100">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0">{{ f.titre }}</h5>
+            </div>
+            <div class="card-body">
+              <p><strong>Niveau :</strong> {{ f.niveau }}</p>
+              <p><strong>Durée :</strong> {{ f.chargeHoraire }}h</p>
+              <p><strong>Tags :</strong> <span class="badge bg-secondary me-1" *ngFor="let t of f.tags.split(',')">{{ t.trim() }}</span></p>
+              <p class="text-muted">{{ f.description | slice:0:100 }}...</p>
+            </div>
+             <div class="card-footer text-end">
+              <button class="btn btn-sm btn-outline-primary me-1" (click)="openModal('edit', f)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger" (click)="remove(f.id!)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+         <div *ngIf="(formations$|async)?.length === 0" class="col-12 text-center text-muted py-5">
+          <i class="bi bi-bookmark-x" style="font-size: 3rem;"></i>
+          <p class="mt-3">Aucune formation</p>
+        </div>
+      </div>
+       <!-- Modal -->
+      <div *ngIf="modalVisible" class="modal d-block" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">
+                {{ modalMode === 'add' ? 'Ajouter une formation' : 'Modifier une formation' }}
+              </h5>
+              <button type="button" class="btn-close" (click)="modalVisible = false"></button>
+            </div>
+             <div class="modal-body">
+              <form #f="ngForm">
+                <div class="mb-3">
+                  <label class="form-label">Titre *</label>
+                  <input type="text" class="form-control" [(ngModel)]="modalModel.titre" name="titre" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Description *</label>
+                  <textarea class="form-control" [(ngModel)]="modalModel.description" name="description" rows="3" required></textarea>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label class="form-label">Durée (heures) *</label>
+                    <input type="number" class="form-control" [(ngModel)]="modalModel.chargeHoraire" name="chargeHoraire" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Niveau *</label>
+                    <select class="form-select" [(ngModel)]="modalModel.niveau" name="niveau" required>
+                      <option value="débutant">Débutant</option>
+                      <option value="intermédiaire">Intermédiaire</option>
+                      <option value="avancé">Avancé</option>
+                    </select>
+                  </div>
+                   </div>
+                <div class="mb-3">
+                  <label class="form-label">Tags (séparés par des virgules)</label>
+                  <input type="text" class="form-control" 
+                    
+                    [(ngModel)]="modalModel.tags"
+                    name="tags"
+                    
+                    placeholder="ex: Angular, TypeScript" required>
+                </div>
+                <!-- <div class="mb-3">
+                  <label class="form-label">Chemin PDF (relatif)</label>
+                  <input type="text" class="form-control" [(ngModel)]="modalModel.programmePdf" name="programmePdf" 
+                    placeholder="ex: assets/programmes/angular-avance.pdf">
+                </div> -->
+                <div class="mb-3">
+                 <label class="form-label">Catégorie (ID)</label>
+                 <input type="text" class="form-control" [(ngModel)]="modalModel.categories" name="categories" required>
+                </div>
+              </form>
+               </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="modalVisible = false">Annuler</button>
+              <button type="button" class="btn btn-success" (click)="save()" [disabled]="!f.valid">
+                {{ modalMode === 'add' ? 'Ajouter' : 'Mettre à jour' }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="modalVisible" class="modal-backdrop fade show"></div>
+    </div>

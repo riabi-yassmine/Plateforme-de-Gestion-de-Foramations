@@ -1,0 +1,32 @@
+<div class="admin-layout">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/admin-space">
+            <i class="bi bi-shield-fill"></i> Bienvenue dans  Espace Admin ISET
+          </a>
+          <div class="navbar-nav">
+            <a class="nav-link" routerLink="dashboard">Tableau de bord & statistiques</a>
+            <a class="nav-link" routerLink="candidats">Candidats</a>
+            <a class="nav-link" routerLink="formateurs">Formateurs</a>
+            <a class="nav-link" routerLink="formations">Formations</a>
+            <a class="nav-link" routerLink="sessions">Sessions</a>
+            <a class="nav-link" routerLink="inscriptions">Inscriptions</a>
+          </div>
+        </div>
+      </nav>
+      <main class="container-fluid mt-4">
+        <router-outlet></router-outlet>
+      </main>
+
+      <footer class="text-center text-muted mt-5 mb-3">
+        <small>© 2026 ISET Rades — Espace administrateur (accès libre)</small>
+        
+      </footer>
+    </div>
+
+    <style>
+      .admin-layout { min-height: 100vh; }
+      @media (max-width: 768px) {
+        .navbar-nav { margin-top: 10px; }
+      }
+    </style>

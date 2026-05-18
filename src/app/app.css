@@ -1,0 +1,12 @@
+body {
+  background-color: #f4f1eb;
+}
+
+.navbar-nav .nav-link.active {
+  font-weight: 600;
+  border-bottom: 2px solid #c9a84c;
+}
+
+footer a:hover {
+  color: #c9a84c !important;
+}
